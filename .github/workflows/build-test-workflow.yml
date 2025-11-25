@@ -80,6 +80,7 @@ jobs:
           # publish_dir: report-${{ env.TIMESTAMP }}.html
           publish_dir: report.html
           keep_files: true
+          allow_empty_commit: true
 
       - name: Add Github Page Link to Summary
         run: |

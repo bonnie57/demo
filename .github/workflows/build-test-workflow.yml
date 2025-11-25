@@ -72,13 +72,11 @@ jobs:
         run: |
           mkdir -p report
           mv -f report.html report/report-${{ env.TIMESTAMP }}.html
-          ls -la report
 
       - name: Deploy Integration Test Report
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e #v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # publish_dir: report-${{ env.TIMESTAMP }}.html
           publish_dir: report
           keep_files: true
           allow_empty_commit: true

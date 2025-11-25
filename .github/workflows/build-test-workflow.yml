@@ -68,20 +68,21 @@ jobs:
         run: |
           pytest tests/integration/test_integration_license.py -v -ra --html=report.html --self-contained-html
 
-      - name: Rename Integration Test Report
-        run: |
-          mv -f report.html report-${{ env.TIMESTAMP }}.html
-          ls -la
+      # - name: Rename Integration Test Report
+      #   run: |
+      #     mv -f report.html report-${{ env.TIMESTAMP }}.html
+      #     ls -la
 
       - name: Deploy Integration Test Report
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e #v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: report-${{ env.TIMESTAMP }}.html
+          # publish_dir: report-${{ env.TIMESTAMP }}.html
+          publish_dir: report.html
           keep_files: true
 
       - name: Add Github Page Link to Summary
         run: |
           repo_name=$(echo "${{ github.repository }}" | cut -d'/' -f2)
-          github_pages_url="https://${{ github.repository_owner }}.github.io/${repo_name}/report-${{ env.TIMESTAMP }}.html"
+          github_pages_url="https://${{ github.repository_owner }}.github.io/${repo_name}/report.html"
           echo "## 📊Github Page Link: [View Test Report](${github_pages_url})" >> $GITHUB_STEP_SUMMARY
